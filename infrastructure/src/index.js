@@ -1,17 +1,31 @@
-import React from 'react';
-import ReactDOM from 'react-dom/client';
-import './index.css';
-import App from './App';
-import reportWebVitals from './reportWebVitals';
+import React from "react";
+import { createRoot } from "react-dom/client";
+import HomePage from "./Pages/homePage";
 
-const root = ReactDOM.createRoot(document.getElementById('root'));
-root.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>
-);
+const sampleProject = {
+  planning_id: "65",
+  planning_title: "€11.1m Factory Project in Co. Carlow",
+  planning_category: "Industrial",
+  planning_subcategory: "Factory",
+  planning_type: "New Build",
+  planning_funding_type: "Private",
+  planning_stage: "Commencement",
+  planning_value: "11100000",
+  planning_region: "Leinster",
+  planning_county: "Carlow",
+  planning_description:
+    "The establishment of an Irish Whiskey Distillery & associated visitor facilities at Holloden Hse Demesne, Clorusk Lr, Royal Oak, Bagenalstown.",
+  planning_url: "http://www.eplanning.ie/CarlowCC/AppFileRefDetails/1433/0",
+  planning_start_date: "2014-12-09",
+};
 
-// If you want to start measuring performance in your app, pass a function
-// to log results (for example: reportWebVitals(console.log))
-// or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
-reportWebVitals();
+const projects = [sampleProject, sampleProject, sampleProject, sampleProject, sampleProject];
+
+const App = () => {
+  return (
+      <HomePage projects={projects} />
+  );
+};
+
+const rootElement = createRoot(document.getElementById("root"));
+rootElement.render(<App />);
