@@ -14,7 +14,7 @@ import img from "../../images/project-placeholder.png";
 
 export default function ProjectCard(props) {
   const project = props.project;
-  
+
   return (
     <Card sx={{ minWidth: 350, padding: 2 }}>
       <CardHeader
@@ -23,23 +23,25 @@ export default function ProjectCard(props) {
       />
       <CardMedia
         sx={{ height: 300 }}
-        image={project.image ? project.image : img}
+        image={project.image || img}  // Default image if no image is available
       />
       <CardContent>
         <Grid container spacing={2}>
           <Grid item xs={6}>
             <Typography variant="h6" component="p">
-              <CalendarIcon fontSize="small" /> {project.planning_start_date}
+              <CalendarIcon fontSize="small" /> {project.planning_start_date || "N/A"}
             </Typography>
           </Grid>
           <Grid item xs={6}>
             <Typography variant="h6" component="p">
-              <MonetizationOnIcon fontSize="small" /> {(project.planning_value / 1000000).toFixed(1)}M
+              <MonetizationOnIcon fontSize="small" /> {(project.planning_value / 1000000 || 0).toFixed(1)}M
             </Typography>
           </Grid>
           <Grid item xs={12}>
             <Typography variant="body1" color="text.secondary">
-              {project.planning_description.substring(0, 150)}...
+              {project.planning_description.length > 150
+                ? `${project.planning_description.substring(0, 150)}...`
+                : project.planning_description}
             </Typography>
           </Grid>
         </Grid>
